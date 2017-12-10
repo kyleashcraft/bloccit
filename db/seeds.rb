@@ -26,10 +26,22 @@ puts "#{posts.count}"
     body: RandomData.random_paragraph
   )
 end
+
 puts "#{Comment.count}"
 Comment.find_or_create_by(post: unique_post, body: "test comment body")
 puts "#{Comment.count}"
 
+50.times do
+  Question.create!(
+    title: RandomData.random_sentence,
+    body: RandomData.random_paragraph,
+    resolved: (rand(100) >= 50 ? true : false)
+  )
+end
+
+puts "#{Question.count}"
+
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+puts "#{Question.count} questions created"
