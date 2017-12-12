@@ -25,20 +25,12 @@ topics = Topic.all
 end
 posts = Post.all
 
-puts "#{posts.count}"
-unique_post = Post.find_or_create_by(title: "test post", body: "test post body")
-puts "#{posts.count}"
-
 100.times do
   Comment.create!(
     post: posts.sample,
     body: RandomData.random_paragraph
   )
 end
-
-puts "#{Comment.count}"
-Comment.find_or_create_by(post: unique_post, body: "test comment body")
-puts "#{Comment.count}"
 
 50.times do
   Question.create!(
@@ -48,10 +40,19 @@ puts "#{Comment.count}"
   )
 end
 
-puts "#{Question.count}"
+50.times do
+  SponsoredPost.create!(
+    title: RandomData.random_sentence,
+    body: RandomData.random_paragraph,
+    price: rand(100),
+    topic: topics.sample
+  )
+end
+
 puts "\n \n"
 puts "Seed finished"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
+puts "#{SponsoredPost.count} sponsored posts created"
 puts "#{Comment.count} comments created"
 puts "#{Question.count} questions created"
