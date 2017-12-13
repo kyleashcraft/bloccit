@@ -33,4 +33,19 @@ RSpec.describe User, type: :model do
     end
 
   end
+
+  describe "format names" do
+    it "capitalizes name" do
+      user.name = "bloc user"
+      user.save
+      expect(user.name).to eq "Bloc User"
+    end
+
+    it "doesn't change normally capitalized name" do
+      user.name = "Steve Jobs"
+      user.save
+      expect(user.name).to eq "Steve Jobs"
+    end 
+  end
+
 end
