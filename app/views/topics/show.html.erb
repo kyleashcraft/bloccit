@@ -5,7 +5,7 @@
     <% @topic.posts.each do |post| %>
       <div class="media">
         <%= render partial: 'votes/voting', locals: { post: post } %>
-        <div class="media-body">
+        <%= content_tag :div, class: "media-body", id: "post-#{post.id}" do %>
           <h4 class="media-heading">
             <%= link_to post.title, topic_post_path(@topic, post) %>
           </h4>
@@ -13,7 +13,7 @@
             submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
             <%= post.comments.count %> Comments
           </small>
-        </div>
+        <% end %>
       </div>
     <% end %>
   </div>
