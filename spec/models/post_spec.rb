@@ -74,5 +74,15 @@ RSpec.describe Post, type: :model do
         expect(post.rank).to eq (old_rank - 1)
       end
     end
+
+    describe "#after_create" do
+      it "adds one positive vote from the post creator after posting" do
+        post_user = User.first
+        new_post = Post.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, topic: Topic.first, user: post_user)
+        vote = new_post.votes.first
+        expect(vote.value).to eq(1)
+        expect(vote.user_id).to eq(post_user.id)
+      end
+    end
   end
 end
