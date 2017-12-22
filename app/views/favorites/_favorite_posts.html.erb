@@ -1,0 +1,12 @@
+<div class="media">
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= image_tag favorite.post.user.avatar_url(30) %>
+      <%= link_to favorite.post.title, topic_post_path(favorite.post.topic, favorite) %>
+    </h4>
+    <small>
+      submitted <%= time_ago_in_words(favorite.post.created_at) %> ago by <%= favorite.post.user.name %> <br>
+      <%= favorite.post.comments.count %> Comments, Votes: <%= favorite.post.points %>
+    </small>
+  </div>
+</div>
